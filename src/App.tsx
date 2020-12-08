@@ -38,9 +38,13 @@ export const App = () => {
     return () => clearInterval(interval);
   }, []);
   
+  let diff = Math.abs(angles[0]-angles[1]);
+  if (diff>180) { diff = 360-diff; }
+  
   return (
       <div>
         <Clock angles={angles}/>
+        <p>Diff: {Math.round(diff)}</p>
       </div>
   )
 }
