@@ -16,7 +16,7 @@ const degToRad = (degrees:number) => {
 
 export const ClockFace = (props: ClockFaceProps) => {
     const SECONDS_HAND_LENGTH = props.size / 2;
-    const MINUTES_HAND_LENGTH = props.size / 2;
+    const MINUTES_HAND_LENGTH = (props.size / 2)*0.9;
     const HOURS_HAND_LENGTH = MINUTES_HAND_LENGTH / 1.5;
     
     const BIG_DOT_SIZE = props.size / 60;
@@ -34,9 +34,15 @@ export const ClockFace = (props: ClockFaceProps) => {
     const minutes_hand_x = clock_center_x + Math.sin(degToRad(180-props.angles[1])) * MINUTES_HAND_LENGTH;
     const minutes_hand_y = clock_center_y + Math.cos(degToRad(180-props.angles[1])) * MINUTES_HAND_LENGTH;
     
+    const minutes_hand_x2 = clock_center_x + Math.sin(degToRad(360-props.angles[1])) * MINUTES_HAND_LENGTH*0.1;
+    const minutes_hand_y2 = clock_center_y + Math.cos(degToRad(360-props.angles[1])) * MINUTES_HAND_LENGTH*0.1;
+    
     const hours_hand_x = clock_center_x + Math.sin(degToRad(180-props.angles[0])) * HOURS_HAND_LENGTH;
     const hours_hand_y = clock_center_y + Math.cos(degToRad(180-props.angles[0])) * HOURS_HAND_LENGTH;
-
+    
+    const hours_hand_x2 = clock_center_x + Math.sin(degToRad(360-props.angles[0])) * HOURS_HAND_LENGTH*0.1;
+    const hours_hand_y2 = clock_center_y + Math.cos(degToRad(360-props.angles[0])) * HOURS_HAND_LENGTH*0.1;
+    
     return (
         <svg width={props.size} height={props.size}>
             {[0,1,2,3,4,5,6,7,8,9,10,11].map((hour) => {
@@ -48,19 +54,19 @@ export const ClockFace = (props: ClockFaceProps) => {
                 );
             })}
             <line
-                x1={clock_center_x}
-                y1={clock_center_y}
-                x2={hours_hand_x}
-                y2={hours_hand_y}
+                x1={hours_hand_x}
+                y1={hours_hand_y}
+                x2={hours_hand_x2}
+                y2={hours_hand_y2}
                 stroke={CLOCK_HAND_COLOR}
                 strokeWidth="10"
                 strokeLinecap="round"
             />
             <line
-                x1={clock_center_x}
-                y1={clock_center_y}
-                x2={minutes_hand_x}
-                y2={minutes_hand_y}
+                x1={minutes_hand_x}
+                y1={minutes_hand_y}
+                x2={minutes_hand_x2}
+                y2={minutes_hand_y2}
                 stroke={CLOCK_HAND_COLOR}
                 strokeWidth="10"
                 strokeLinecap="round"
