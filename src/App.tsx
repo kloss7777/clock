@@ -5,6 +5,7 @@ const ANGLES_PER_SECOND = 6;
 
 const ANGLES_PER_HOUR = 30;
 const ANGLES_PER_MINUTE_FOR_HOURS = 0.5;
+const ANGLES_PER_SECOND_FOR_HOURS = 0.5/60;
 
 const ANGLES_PER_MINUTE = 6;
 const ANGLES_PER_SECONDS_FOR_MINUTE = 0.1;
@@ -27,7 +28,7 @@ export const App = () => {
         hours -= 12;
       }
       setAngles([
-        hours*ANGLES_PER_HOUR + minutes*ANGLES_PER_MINUTE_FOR_HOURS,
+        hours*ANGLES_PER_HOUR + minutes*ANGLES_PER_MINUTE_FOR_HOURS + seconds*ANGLES_PER_SECOND_FOR_HOURS,
         minutes*ANGLES_PER_MINUTE + seconds*ANGLES_PER_SECONDS_FOR_MINUTE,
         (seconds+milliseconds/1000)*ANGLES_PER_SECOND
       ]);
