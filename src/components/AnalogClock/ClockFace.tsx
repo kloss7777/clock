@@ -28,6 +28,9 @@ export const ClockFace = (props: ClockFaceProps) => {
     const seconds_hand_x = clock_center_x + Math.sin(degToRad(180-props.angles[2])) * SECONDS_HAND_LENGTH;
     const seconds_hand_y = clock_center_y + Math.cos(degToRad(180-props.angles[2])) * SECONDS_HAND_LENGTH;
     
+    const seconds_hand_x2 = clock_center_x + Math.sin(degToRad(360-props.angles[2])) * SECONDS_HAND_LENGTH * 0.1;
+    const seconds_hand_y2 = clock_center_y + Math.cos(degToRad(360-props.angles[2])) * SECONDS_HAND_LENGTH * 0.1;
+    
     const minutes_hand_x = clock_center_x + Math.sin(degToRad(180-props.angles[1])) * MINUTES_HAND_LENGTH;
     const minutes_hand_y = clock_center_y + Math.cos(degToRad(180-props.angles[1])) * MINUTES_HAND_LENGTH;
     
@@ -63,10 +66,10 @@ export const ClockFace = (props: ClockFaceProps) => {
                 strokeLinecap="round"
             />
             <line
-                x1={clock_center_x}
-                y1={clock_center_y}
-                x2={seconds_hand_x}
-                y2={seconds_hand_y}
+                x1={seconds_hand_x}
+                y1={seconds_hand_y}
+                x2={seconds_hand_x2}
+                y2={seconds_hand_y2}
                 stroke={SECONDS_HAND_COLOR}
                 strokeWidth="2"
                 strokeLinecap="round"
