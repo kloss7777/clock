@@ -7,7 +7,8 @@ interface ClockFaceProps {
 }
 
 const DOT_COLOR = "#333333";
-const CLOCK_HAND_COLOR = "#011da5";
+const HOURS_HAND_COLOR = "#011da5";
+const MINUTES_HAND_COLOR = "#1735c9";
 const SECONDS_HAND_COLOR = "#c90000";
 
 const degToRad = (degrees:number) => {
@@ -50,7 +51,7 @@ export const ClockFace = (props: ClockFaceProps) => {
                 const y = clock_center_y + Math.cos(degToRad(hour*ANGLES_PER_HOUR)) * (clock_center_y - BIG_DOT_SIZE);
                 const radius = ((hour % 3) === 0) ? BIG_DOT_SIZE : SMALL_DOT_SIZE;
                 return (
-                    <circle cx={x} cy={y} r={radius} fill={DOT_COLOR}/>
+                    <circle key={hour} cx={x} cy={y} r={radius} fill={DOT_COLOR}/>
                 );
             })}
             <line
@@ -58,8 +59,8 @@ export const ClockFace = (props: ClockFaceProps) => {
                 y1={hours_hand_y}
                 x2={hours_hand_x2}
                 y2={hours_hand_y2}
-                stroke={CLOCK_HAND_COLOR}
-                strokeWidth="10"
+                stroke={HOURS_HAND_COLOR}
+                strokeWidth="20"
                 strokeLinecap="round"
             />
             <line
@@ -67,8 +68,8 @@ export const ClockFace = (props: ClockFaceProps) => {
                 y1={minutes_hand_y}
                 x2={minutes_hand_x2}
                 y2={minutes_hand_y2}
-                stroke={CLOCK_HAND_COLOR}
-                strokeWidth="10"
+                stroke={MINUTES_HAND_COLOR}
+                strokeWidth="20"
                 strokeLinecap="round"
             />
             <line
@@ -77,8 +78,14 @@ export const ClockFace = (props: ClockFaceProps) => {
                 x2={seconds_hand_x2}
                 y2={seconds_hand_y2}
                 stroke={SECONDS_HAND_COLOR}
-                strokeWidth="2"
+                strokeWidth="5"
                 strokeLinecap="round"
+            />
+            <circle
+                cx={clock_center_x}
+                cy={clock_center_y}
+                r={10}
+                fill={SECONDS_HAND_COLOR}
             />
         </svg>
     )
